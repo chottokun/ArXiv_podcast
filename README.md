@@ -19,7 +19,7 @@ docker run --rm --gpus all -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:n
 ```
 
 ### APIのURLや音声IDを変更させたい場合。
-podcast_audio.py中の設定を直接書き換え
+podcast_audio.py中の設定を直接書き換えます。
 ```
 VICEVOX_API_URL = "http://localhost:50021"
 SPEACKER1_CHARACTOR_ID = 46
@@ -34,6 +34,9 @@ app/podcast.pyを書き換え下さい。
 input_search_query = "RAG Retrieval Augmented Generation"
 category = "cat:cs"
 ```
+
+# 参考
+- https://github.com/meta-llama/llama-recipes/tree/main/recipes/quickstart/NotebookLlama
 
 # クレジット
 - VOICEVOXは無料で使える中品質なテキスト読み上げ・歌声合成ソフトウェアです。

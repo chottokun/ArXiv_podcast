@@ -35,6 +35,12 @@ input_search_query = "RAG Retrieval Augmented Generation"
 category = "cat:cs"
 ```
 
+# RSSからPodcast
+```Python 
+python app/rss_podcast.py
+```
+上記プログラムのurlを好きなRSSのフィードに書き換えてください。
+
 # 参考
 - https://github.com/meta-llama/llama-recipes/tree/main/recipes/quickstart/NotebookLlama
 

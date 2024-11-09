@@ -1,9 +1,9 @@
-# ArXivから検索した論文をまとめてPodcast
-検索文字列などなどハードコーディングしたままです。ArXiv運営に負担がかからない範囲でご利用ください。
+# ArXivから検索した論文やRSSから情報からPodcast
+検索文字列などなどハードコーディングしたままです。ArXiv運営やRSS提供先に負担がかからない範囲でご利用ください。
 
 # 事前準備
 
-## 必要必ブラリ
+## 必要ライブラリ
 Pipfileを参照ください。
 
 ## gemini-1.5-flashの利用準備
@@ -26,7 +26,8 @@ SPEACKER1_CHARACTOR_ID = 46
 SPEACKER2_CHARACTOR_ID = 8
 ```
 
-# 検索文字列セット
+# ArXivから作成する
+## 検索文字列セット
 
 app/podcast.pyを書き換え下さい。
 ```Python 
@@ -35,7 +36,18 @@ input_search_query = "RAG Retrieval Augmented Generation"
 category = "cat:cs"
 ```
 
+## Podcast化
+```Python 
+python app/app/podcast.py
+```
+podcast.wavとして生成されます。
+
 # RSSからPodcast
+## URLを設定
+rss_podcast.py  
+プログラムのurlを好きなRSSのフィードに書き換えてください。
+
+## Podcast化
 ```Python 
 python app/rss_podcast.py
 ```

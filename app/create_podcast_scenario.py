@@ -79,13 +79,22 @@ def write_podcast(text):
     """
 
     response = model.generate_content(Transcript_PROMPT)
-    print(response.text)
-    return response.text
+    #print(response.text)
+    try:
+        return json.dumps(json.loads(response.text), ensure_ascii=False, indent=4)
+    except json.JSONDecodeError as e:
+        print(f"JSON decode error: {e}")
+        return "[]"
+
 
 def load_markdown(file_path = "./output/test.md"):
-    with open(file_path, 'r') as file:
-        text = file.read()
-    return text
+    try:
+        with open(file_path, 'r') as file:
+            text = file.read()
+        return text
+    except FileNotFoundError:
+        print(f"Error: File not found at {file_path}")
+        return ""
 
 def save_podcast_scenario(podcast_json, save_path="output/"):
     with open(f"{save_path}podcast_data.json", 'w') as f:
@@ -100,13 +109,12 @@ if __name__ == "__main__":
     # .envファイルの内容を読み込見込む
     load_dotenv()
     API_KEY = os.environ["GOOGLE_API_KEY"]
-    text = load_markdown(file_path = "./output/podcast.md")
+    #text = load_markdown(file_path = "./output/podcast.md") #コメントアウト
     # モデルを定義
     model = build_model(API_KEY)
     # 要約
-    summary = summarize_text(text, "RAG")
+    #summary = summarize_text(text, "RAG") #コメントアウト
     # podcastのシナリオを作成
-    response = write_podcast(summary)
+    response = write_podcast("test") # テスト用のテキスト
     # podcastを保存
     save_podcast_scenario(response)
-

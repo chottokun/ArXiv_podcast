@@ -8,10 +8,10 @@ import ast
 
 def get_audio(text, speakerID):
     # audio_query (音声合成用のクエリを作成するAPI)
-    res1 = requests.post(VICEVOX_API_URL + '/audio_query',
+    res1 = requests.post(os.environ.get("VICEVOX_API_URL") + '/audio_query',
                         params={'text': text, 'speaker': speakerID})
     # synthesis (音声合成するAPI)
-    res2 = requests.post(VICEVOX_API_URL + '/synthesis',
+    res2 = requests.post(os.environ.get("VICEVOX_API_URL") + '/synthesis',
                         params={'speaker': speakerID},
                         data=json.dumps(res1.json()))
     return res2
@@ -22,9 +22,9 @@ def save_audio(conversation, audio_file_path):
             if line:
                 speaker, text = next(iter(line.items()))
                 if speaker == "Speaker 1":
-                    speakerID = SPEACKER1_CHARACTOR_ID
+                    speakerID = int(os.environ.get("SPEACKER1_CHARACTOR_ID"))
                 elif speaker == "Speaker 2":
-                    speakerID = SPEACKER2_CHARACTOR_ID
+                    speakerID = int(os.environ.get("SPEACKER2_CHARACTOR_ID"))
                 else:
                     continue #想定外のspeakerはスキップ
 
@@ -55,9 +55,6 @@ def combine_wav_files(output_file, input_folder):
     print("No WAV files found in the input folder.")
 
 
-VICEVOX_API_URL = "http://localhost:50021"
-SPEACKER1_CHARACTOR_ID = 46
-SPEACKER2_CHARACTOR_ID = 8
 
 if __name__ == "__main__":
   # Loading

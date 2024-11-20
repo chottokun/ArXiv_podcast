@@ -25,13 +25,6 @@ docker run --rm --gpus all -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:n
 
 ### APIのURLや音声IDの変更
 
-`podcast_audio.py`の設定を直接変更してください。  **APIのURLは環境変数`VICEVOX_API_URL`で指定されます。**
-```python
-# VICEVOX_API_URL = "http://localhost:50021"  <- .envファイルで設定
-SPEACKER1_CHARACTOR_ID = 46
-SPEACKER2_CHARACTOR_ID = 8
-```
-
 `.env`ファイルに`VICEVOX_API_URL`, `SPEACKER1_CHARACTOR_ID`, `SPEACKER2_CHARACTOR_ID`を設定してください。
 `.env`ファイルの例：
 ```
